@@ -39,6 +39,7 @@ internal static partial class Program
 
 	private static void helper()
 	{
+		return;
 		foreach (KeyValuePair<string, Dictionary<string, string>> kvp in args)
 		{
 			Console.WriteLine($" ***** {kvp.Key} ***** ");

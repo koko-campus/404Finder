@@ -1,11 +1,13 @@
-﻿
+﻿using System.Threading;
 
 internal static partial class Program
 {
 	internal static int Main(string[] args)
 	{
+		import(); // importing information for env setting.
 
 		var fstArg = args[0];
+		List<Task> tasks = new List<Task>();
 
 		if (isUrl(fstArg))
         {
@@ -20,7 +22,13 @@ internal static partial class Program
 				helper();
 				Environment.Exit(1);
 			}
-			looper(urls, (url, _) => urlWalker(url));
+			looper(urls, (url, _) => {
+				tasks.Add(Task.Run(() => {
+					urlWalker(url);
+				}));
+				return 0;
+			});
+			Task.WhenAll(tasks).Wait();
         }
 		else
         {
