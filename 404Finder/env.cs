@@ -20,7 +20,7 @@ internal static partial class Program
         }
     }
 
-    private static string obtain(string key)
+    internal static string obtain(string key)
 	{
         if (!env.ContainsKey(key)) return "";
         return env[key];
