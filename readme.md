@@ -14,6 +14,7 @@
 | [AngleSharp](https://anglesharp.github.io/) | 0.17.1 |
 | Windows | 11 |
 | Visual Studio | 2022 |
+| SqlClient(https://github.com/dotnet/corefx) | 4.8.3 |
 
 
 # 処理フロー

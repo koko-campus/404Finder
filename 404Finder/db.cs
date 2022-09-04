@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
-
 
 internal enum SQLmethod
 {
@@ -18,7 +15,7 @@ internal enum whichDB
 internal class SQLBuilder
 {
     private whichDB which;
-    public SQLBuilder(whichDB either)
+    internal SQLBuilder(whichDB either)
     {
         which = either;
     }
@@ -56,7 +53,7 @@ internal class SQLBuilder
     // return -> List<List<object>>
     private List<Dictionary<string, object>> Run(SQLmethod sqlmethod)
     {
-        string SQLExpress = Properties.Settings.Default[which.ToString()].ToString();
+        string SQLExpress = Program.obtain("DATABASE_CONNECTION_STRING");
         using (var connection = new SqlConnection(SQLExpress))
         {
             connection.Open();
