@@ -33,12 +33,5 @@ internal static partial class Program
 		return 0;
 	}
 
-	private static void helper()
-    {
-		Console.WriteLine($" I receive parameters down below. ");
-		Console.WriteLine($" 1st param ->  url or path to file(read urls.txt to learn how to write). | required! ");
-		Console.WriteLine($" -t option -> set request timeout (millisecond) ");
-		Console.WriteLine($" -x option -> without any prompt. no value required, just put \"-t\" ");
-    }
 }
 

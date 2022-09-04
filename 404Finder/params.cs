@@ -36,5 +36,16 @@ internal static partial class Program
 		return true;
 	}
 
+
+	private static void helper()
+	{
+		foreach (KeyValuePair<string, Dictionary<string, string>> kvp in args)
+		{
+			Console.WriteLine($" ***** {kvp.Key} ***** ");
+			Console.WriteLine($" \texplanation : {kvp.Value["explanation"]} ");
+			Console.WriteLine($" \tdefault value : {kvp.Value["value"]} ");
+		}
+	}
+
 }
 
