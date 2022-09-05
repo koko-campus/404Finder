@@ -43,9 +43,35 @@ internal static partial class Program
 			Environment.Exit(1);
 		}
 
-		return 0;
+		writeLog();
+		if (errorCount == 0)
+		{
+			Console.WriteLine("プログラムは正常に実行されました。");
+			Console.WriteLine("実行結果は以下のSQLを実行して確認して下さい。");
+			Console.WriteLine(" ***** ***** SQL ***** ***** ");
+			Console.WriteLine(" SELECT * ");
+			Console.WriteLine(" FROM result ");
+			Console.WriteLine(" WHERE (");
+			looper(targetIds.ConvertAll(a => (dynamic)a), (id, _) => {
+				Console.WriteLine($"\tid = {id} OR");
+				return 0;
+			});
+			Console.WriteLine("\t1 = 0");
+			Console.WriteLine(");");
+		} else
+		{
+			Console.WriteLine($"プログラム実行中にエラーが発生しました。 ({errorCount}件)");
+			Console.WriteLine("エラー内容は以下のファイルを確認してください。");
+			Console.WriteLine($"LOG -> {ROOT + ".log"}");
+			Console.WriteLine($"ERROR -> {ROOT + ".error"}");
+		}
+
+		Console.ReadKey();
+		return errorCount;
 	}
 	internal static readonly string machine = Environment.MachineName;
 	internal static readonly string user = Environment.UserName;
+	internal static int errorCount = 0;
+	internal static List<int> targetIds = new();
 }
 

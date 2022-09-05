@@ -8,14 +8,15 @@ internal static partial class Program
 {
 	private static List<string> _log = new();
 	private static List<string> _error = new();
-	private static void log(string message)
+	internal static void log(string message)
 	{
 		_log.Add(message);
 	}
 
-	private static void error(string message)
+	internal static void error(string message)
 	{
 		_error.Add(message);
+		errorCount++;
 	}
 
 	private static void writeLog()

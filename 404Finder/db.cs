@@ -118,6 +118,7 @@ internal class SQLBuilder
 		{
 			tran.Rollback();
 			Console.WriteLine($"ERROR -> {ex.Message}");
+			Program.error(ex.Message);
 			return new List<Dictionary<string, object>>();
 		}
 		finally
