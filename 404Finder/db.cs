@@ -14,7 +14,7 @@ internal class SQLBuilder
 	private string _sql = "";
 	private List<dynamic> _sqlParams = new();
 	private Dictionary<string, SqlDbType> _sqlParamsDataType = new();
-	private SqlConnection connection = new SqlConnection(Program.obtain("DATABASE_CONNECTION_STRING"));
+	private SqlConnection connection = new(Program.obtain("DATABASE_CONNECTION_STRING"));
 	private bool useTran = false;
 
 
