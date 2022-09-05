@@ -7,7 +7,7 @@ internal static partial class Program
 		import(); // importing information for env setting.
 
 		var fstArg = args[0];
-		List<Task> tasks = new List<Task>();
+		List<Task> tasks = new();
 
 		if (isUrl(fstArg))
         {
@@ -15,7 +15,7 @@ internal static partial class Program
         } else if (File.Exists(fstArg))
         {
 			var urls = File.ReadAllLines(fstArg).Where(line => isUrl(line)).ToList().ConvertAll(a => (dynamic)a);
-			if (urls.Count() == 0)
+			if (urls.Count == 0)
             {
 				Console.WriteLine(" file you gave has no valid url inside. ");
 				Console.WriteLine(" show urls.txt to get infomation. ");
@@ -40,6 +40,7 @@ internal static partial class Program
 
 		return 0;
 	}
-
+	internal static readonly string machine = Environment.MachineName;
+	internal static readonly string user = Environment.UserName;
 }
 

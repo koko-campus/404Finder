@@ -8,6 +8,13 @@ internal static partial class Program
 {
     private static void urlWalker(string url)
     {
+        // ***** ***** ***** ***** ***** ***** *****
+        // ***** ***** execute_log への追加 ***** *****
+        // ***** ***** ***** ***** ***** ***** *****
+
+
+
+
 
     }
 }
