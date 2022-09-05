@@ -34,7 +34,10 @@ internal static partial class Program
         SQL.Execute();
 
 
+        List<string> willVisit = new() {fqdn};
+        List<string> visited = new();
 
+        swimmer(latestId, willVisit, visited, 0);
 
     }
 }
