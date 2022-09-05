@@ -41,7 +41,7 @@ internal partial class Program
 			? takeFqdn(url) + path : url.EndsWith("/")
 			? url + path : url + "/" + path;
 
-	private static bool isUrl(string url) => Regex.IsMatch(url, @"https?://[\d\w\-\.]+");
+	private static bool isUrl(string url) => Regex.IsMatch(url, @"https?://[\d\w\-\.]+\.\w+");
 	private static string takeFqdn(string url) => Regex.Match(url, @"(?<FQDN_ALPHA>https?://[\d\w\-\.]+)").Groups["FQDN_ALPHA"].Value;
 
 	private static string takeDomain(string url) => Regex.Match(url, @"https?://(?<DOMAIN>[\d\w\-\.]+)").Groups["DOMAIN"].Value;
