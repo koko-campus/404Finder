@@ -56,6 +56,7 @@ internal class SQLBuilder
 			// use "use" statement to free the resources easily.
 			using (var command = connection.CreateCommand())
 			{
+				command.Transaction = tran;
 				// put sql statement on CommandText.
 				command.CommandText = _sql;
 				// set sqlParamsType on CommandParameters.
