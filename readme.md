@@ -82,5 +82,6 @@ WITH
   CHECK_EXPIRATION = OFF,
   CHECK_POLICY = OFF;
 CREATE USER [404Finder];
+-- 作成したユーザに適切なCRUD権限を付与してください。
 ```
 

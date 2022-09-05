@@ -13,11 +13,13 @@ internal static partial class Program
         // ***** ***** execute_log への追加 ***** *****
         // ***** ***** ***** ***** ***** ***** *****
 
-        SQLBuilder SQL = new SQLBuilder();
+        SQLBuilder SQL = new();
         SQL.Add("SELECT MAX(id) AS updated_id");
         SQL.Add("FROM execute_log;");
         var row = SQL.Select();
-        var latestId = row.ContainsKey("updated_id") ? int.Parse(row["updated_id"].ToString() ?? "0") : 0;
+        var latestId = row.ContainsKey("updated_id") && row["updated_id"] != DBNull.Value ? int.Parse(row["updated_id"].ToString() ?? "0") + 1 : 0;
+
+        targetIds.Add(latestId);
 
         SQL.Add("INSERT INTO execute_log(id, fqdn, done_by, done_at)");
         SQL.Add("VALUES(@id, @fqdn, @done_by, @done_at)");
@@ -25,7 +27,7 @@ internal static partial class Program
         SQL.SetDataType("@fqdn", SqlDbType.VarChar);
         SQL.SetDataType("@done_by", SqlDbType.VarChar);
         SQL.SetDataType("@done_at", SqlDbType.VarChar);
-        SQL.AddParam(latestId + 1);
+        SQL.AddParam(latestId);
         SQL.AddParam(fqdn);
         SQL.AddParam(user);
         SQL.AddParam(machine);

@@ -124,6 +124,7 @@ internal class SQLBuilder
 		}
 		finally
 		{
+			if (tran != null) tran.Commit();
 			connection.Close();
 		}
 	}
