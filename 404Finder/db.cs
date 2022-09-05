@@ -7,23 +7,13 @@ internal enum SQLmethod
     SelectAll,
     Execute,
 }
-internal enum whichDB
-{
-    connectionStringProbi,
-    connectionStringIChecker,
-}
 internal class SQLBuilder
 {
-    private whichDB which;
-    internal SQLBuilder(whichDB either)
-    {
-        which = either;
-    }
     // define member variables here...
     // env data should be "1. sql statement", "2. sql parameters for bind variables", "3. bind variables' data type".
     private string _sql = "";
-    private List<dynamic> _sqlParams = new List<dynamic> { };
-    private Dictionary<string, SqlDbType> _sqlParamsDataType = new Dictionary<string, SqlDbType> { };
+    private List<dynamic> _sqlParams = new();
+    private Dictionary<string, SqlDbType> _sqlParamsDataType = new();
     // add sql statement.
     internal void Add(string sql)
     {
