@@ -1,0 +1,15 @@
+CREATE TABLE result(
+	id INT,
+	path VARHCAR(300),
+	ext VARCHAR(30) NULL,
+	status_code CHAR(3) NULL,
+	content_type VARCHAR(50) NULL,
+	last_modified DATETIME NULL,
+	file_size int NOT NULL,
+	charset VARCHAR(50) NOT NULL,
+	step INT NOT NULL,
+	rgdt DATETIME DEFAULT CURRENT_TIMESTAMP,
+	updt DATETIME DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY(id, path)
+);
+
