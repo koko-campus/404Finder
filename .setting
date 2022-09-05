@@ -1,0 +1,35 @@
+# 404Finder 設定ファイル
+
+# 404Finder プログラムの設定を記述します。
+# 「#」以降はコメントアウトとして扱われます。
+# 設定は「キー=バリュー」と記述します。
+# 前後の空白類似文字は削除されます。
+# 設定のオン・オフは「ON」「OFF」で記述します。
+
+
+
+# ページ最大遷移数 | デフォルト(500)
+PAGE_TRANSITION_LIMIT=500
+
+# 各ページごとのリダイレクト追従最大回数 | デフォルト(10)
+REDIRECT_LIMIT=10
+
+# リクエストタイムアウト時間 | デフォルト(1000) - 単位はミリ秒
+REQUEST_TIMEOUT_SPAN=1000
+
+# 実行確認の状態 | デフォルト(ON)
+PROMPT_MODE=ON
+
+# 送信するユーザーエージェント
+USER_AGENT=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36
+
+# 文字コード | デフォルト(UTF-8)
+CHARSET=UTF-8
+
+# データベース接続文字列 | デフォルト(★★★)
+DATABASE_CONNECTION_STRING=Data Source=localhost;Initial Catalog=404Finder;Persist Security Info=True;User ID=404Finder;Password=404Finder
+
+
+
+
+
