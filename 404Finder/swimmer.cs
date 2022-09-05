@@ -1,24 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Net;
 using System.Threading.Tasks;
 
 internal static partial class Program
 {
-	private static void swimmer(int id, List<string> willVisit, List<string> visited, int step)
+	private static void swimmer(int id, CookieContainer cookie, List<urlStruct> willVisit, List<string> visited, int step)
 	{
-		List<string> newComers = new();
+		List<urlStruct> newComers = new();
 
 		foreach (var visiting in willVisit)
 		{
-			if (visited.Contains(visiting)) continue;
-			visited.Add(visiting);
+			if (visited.Contains(visiting.url)) continue;
+			visited.Add(visiting.url);
 
-			urlExplorer();
+			urlExplorer(visiting, cookie);
 		}
 
-		swimmer(id, newComers, visited, step + 1);
+		swimmer(id, cookie, newComers, visited, step + 1);
 	}
 }
 

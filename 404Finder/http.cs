@@ -4,6 +4,19 @@ using System.Linq;
 using System.Net;
 using System.Text;
 
+internal enum httpMethod
+{
+    get,
+    post,
+}
+
+internal struct urlStruct
+{
+    internal string url;
+    internal httpMethod method;
+    internal Dictionary<string, string> kvp;
+}
+
 internal static partial class Program
 {
     internal static HttpWebRequest GetRequest(string url, CookieContainer cookie)

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
@@ -33,11 +33,17 @@ internal static partial class Program
         SQL.AddParam(machine);
         SQL.Execute();
 
-
-        List<string> willVisit = new() {fqdn};
+        CookieContainer cookie = new();
+        List<urlStruct> willVisit = new() {
+            new urlStruct
+			{
+                url = fqdn,
+                method = httpMethod.get,
+			}
+        };
         List<string> visited = new();
 
-        swimmer(latestId, willVisit, visited, 0);
+        swimmer(latestId, cookie, willVisit, visited, 0);
 
     }
 }
