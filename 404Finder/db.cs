@@ -52,7 +52,7 @@ internal class SQLBuilder
 	private List<Dictionary<string, object>> Run(SQLmethod sqlmethod)
 	{
 		connection.Open();
-		SqlTransaction tran = connection.BeginTransaction();
+		SqlTransaction tran = connection.BeginTransaction(IsolationLevel.Serializable);
 		try
 		{
 			// use "use" statement to free the resources easily.
