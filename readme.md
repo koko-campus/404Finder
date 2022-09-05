@@ -50,7 +50,7 @@ USE [404Finder];
 
 CREATE TABLE execute_log(
 	id INT PRIMARY KEY,
-	url VARCHAR(300) NOT NULL,
+	fqdn VARCHAR(300) NOT NULL,
 	done_by VARCHAR(100) NOT NULL,
 	done_at VARCHAR(100) NOT NULL,
 	status BIT DEFAULT 0,
