@@ -16,7 +16,8 @@ internal static partial class Program
         SQLBuilder SQL = new SQLBuilder();
         SQL.Add("SELECT MAX(id) AS updated_id");
         SQL.Add("FROM execute_log;");
-        var latestId = int.Parse(SQL.Select()["updated_id"].ToString() ?? "0");
+        var row = SQL.Select();
+        var latestId = row.ContainsKey("updated_id") ? int.Parse(row["updated_id"].ToString() ?? "0") : 0;
 
         SQL.Add("INSERT INTO execute_log(id, fqdn, done_by, done_at)");
         SQL.Add("VALUES(@id, @fqdn, @done_by, @done_at)");
@@ -28,7 +29,7 @@ internal static partial class Program
         SQL.AddParam(fqdn);
         SQL.AddParam(user);
         SQL.AddParam(machine);
-
+        SQL.Execute();
 
 
 

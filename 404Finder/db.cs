@@ -15,8 +15,6 @@ internal class SQLBuilder
 	private List<dynamic> _sqlParams = new();
 	private Dictionary<string, SqlDbType> _sqlParamsDataType = new();
 	private SqlConnection connection = new(Program.obtain("DATABASE_CONNECTION_STRING"));
-	private bool useTran = false;
-
 
 	// add sql statement.
 	internal void Add(string sql)
@@ -129,7 +127,9 @@ internal class SQLBuilder
 	}
 	internal Dictionary<string, object> Select()
 	{
-		return Run(SQLmethod.Select)[0];
+		var nestedAnswer = Run(SQLmethod.Select);
+		if (nestedAnswer.Count == 0) return new Dictionary<string, object>();
+		return nestedAnswer[0];
 	}
 	internal List<Dictionary<string, object>> SelectAll()
 	{

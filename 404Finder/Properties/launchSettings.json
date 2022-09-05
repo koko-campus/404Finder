@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "404Finder": {
+      "commandName": "Project",
+      "commandLineArgs": "https://google.com"
+    }
+  }
+}
