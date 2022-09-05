@@ -39,6 +39,7 @@ internal static partial class Program
 			{
                 url = fqdn,
                 method = httpMethod.get,
+                kvp = new Dictionary<string, string>(),
 			}
         };
         List<string> visited = new();

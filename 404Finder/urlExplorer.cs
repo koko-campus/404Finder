@@ -3,11 +3,27 @@ using System.Collections.Generic;
 using System.Net;
 using AngleSharp.Html.Dom;
 
+
+internal struct resultStruct
+{
+	internal int id;
+	internal string path;
+	internal string ext;
+	internal string status_code;
+	internal string content_type;
+	internal DateTime last_modified;
+	internal long file_size;
+	internal string charset;
+	internal int step;
+}
+
 internal static partial class Program
 {
-	private static List<urlStruct> urlExplorer(urlStruct url, CookieContainer cookie)
+	private static List<resultStruct> results = new();
+
+	private static List<urlStruct> urlExplorer(urlStruct url, int id, int step, CookieContainer cookie)
 	{
-		var dom = url2dom(url, cookie);
+		(var dom, var responseData) = url2dom(url, cookie);
 		
 		// 探索対象となる(リンクを有する)タグを取得
 
@@ -22,9 +38,23 @@ internal static partial class Program
 		{
 			url = mergeUrl(url.url, link),
 			method = httpMethod.get,
+			kvp = new Dictionary<string, string>(),
+		}).ToList();
+
+		results.Add(new resultStruct {
+			id = id,
+			path = new Uri(url.url).LocalPath,
+			ext = Path.GetExtension(url.url),
+			status_code = responseData.statusCode,
+			content_type = responseData.contentType,
+			last_modified = responseData.lastModified,
+			file_size = responseData.fileSize,
+			charset = responseData.charset,
+			step = step,
 		});
 
 
+		return links;
 	}
 }
 

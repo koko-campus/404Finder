@@ -38,7 +38,7 @@ internal static partial class Program
         }
 		else
 		{
-			Console.WriteLine("第一パラメタは有効なURLないしはパスではありません。");
+			Console.WriteLine("第一パラメタが有効なURLないしはパスではありません。");
 			Console.WriteLine("綴りを確認して再度実行してください。");
 			Environment.Exit(1);
 		}

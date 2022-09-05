@@ -28,17 +28,32 @@ internal static partial class Program
 		{
 			request = PostRequest(url.url, cookie, param);
 		}
-		var response = (HttpWebResponse)request.GetResponse();
-		var contents = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("UTF-8")).ReadToEnd();
-		var dom = new HtmlParser().ParseDocument(contents);
-		return (dom, new responseStruct
+
+		try
 		{
-			statusCode = response.StatusCode.ToString(),
-			contentType = response.ContentType,
-			fileSize = response.ContentLength,
-			charset = response.CharacterSet ?? "",
-			lastModified = response.LastModified,
-		});
+			var response = (HttpWebResponse)request.GetResponse();
+			var contents = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("UTF-8")).ReadToEnd();
+			var dom = new HtmlParser().ParseDocument(contents);
+			return (dom, new responseStruct
+			{
+				statusCode = response.StatusCode.ToString(),
+				contentType = response.ContentType,
+				fileSize = response.ContentLength,
+				charset = response.CharacterSet ?? "",
+				lastModified = response.LastModified,
+			});
+		}
+		catch
+		{
+			return (new HtmlParser().ParseDocument(""), new responseStruct
+			{
+				statusCode = "404",
+				contentType = "",
+				fileSize = -1,
+				charset = "",
+				lastModified = new DateTime(1970, 1, 1),
+			});
+		}
 	}
 
 

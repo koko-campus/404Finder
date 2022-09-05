@@ -15,7 +15,7 @@ internal static partial class Program
 			if (visited.Contains(visiting.url)) continue;
 			visited.Add(visiting.url);
 
-			urlExplorer(visiting, cookie);
+			newComers = newComers.Concat(urlExplorer(visiting, id, step, cookie)).ToList();
 		}
 
 		swimmer(id, cookie, newComers, visited, step + 1);
