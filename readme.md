@@ -60,7 +60,7 @@ CREATE TABLE execute_log(
 
 CREATE TABLE result(
 	id INT,
-	path VARHCAR(300),
+	path VARCHAR(300),
 	ext VARCHAR(30) NULL,
 	status_code CHAR(3) NULL,
 	content_type VARCHAR(50) NULL,
