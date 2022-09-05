@@ -6,6 +6,12 @@ internal static partial class Program
 	{
 		import(); // importing information for env setting.
 
+		if (args.Length == 0)
+		{
+			Console.WriteLine(" 第一パラメタに検査対象となるURL、または検査対象となるURL一覧を記載したファイルへのパスを指定してください。 ");
+			Environment.Exit(1);
+		}
+
 		var fstArg = args[0];
 		List<Task> tasks = new();
 
@@ -17,9 +23,9 @@ internal static partial class Program
 			var urls = File.ReadAllLines(fstArg).Where(line => isUrl(line)).ToList().ConvertAll(a => (dynamic)a);
 			if (urls.Count == 0)
             {
-				Console.WriteLine(" file you gave has no valid url inside. ");
-				Console.WriteLine(" show urls.txt to get infomation. ");
-				helper();
+				Console.WriteLine("指定したファイルに有効なURLがありませんでした。");
+				Console.WriteLine("URLは以下の正規表現を満たす必要があります。");
+				Console.WriteLine(@"/https?://[\d\w\-\.]+\.\w+/");
 				Environment.Exit(1);
 			}
 			looper(urls, (url, _) => {
@@ -31,12 +37,11 @@ internal static partial class Program
 			Task.WhenAll(tasks).Wait();
         }
 		else
-        {
-			Console.WriteLine(" you sent invalid param(s). ");
-			Console.WriteLine(" show parameters explanation below. ");
-			helper();
+		{
+			Console.WriteLine("第一パラメタは有効なURLないしはパスではありません。");
+			Console.WriteLine("綴りを確認して再度実行してください。");
 			Environment.Exit(1);
-        }
+		}
 
 		return 0;
 	}
