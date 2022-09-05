@@ -44,10 +44,11 @@ SQLServerとIDEであるSSMSをインストール
 * https://docs.microsoft.com/ja-jp/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16
 
 ```sql
+-- データベースの作成
 CREATE DATABASE [404Finder];
 
+-- テーブルの作成
 USE [404Finder];
-
 CREATE TABLE execute_log(
 	id INT PRIMARY KEY,
 	fqdn VARCHAR(300) NOT NULL,
@@ -72,5 +73,14 @@ CREATE TABLE result(
 	updt DATETIME DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY(id, path)
 );
+
+-- ユーザの作成
+CREATE LOGIN [404Finder]
+WITH
+  PASSWORD = '404Finder',
+  DEFAULT_DATABASE = [404Finder],
+  CHECK_EXPIRATION = OFF,
+  CHECK_POLICY = OFF;
+CREATE USER [404Finder];
 ```
 
