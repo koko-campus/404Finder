@@ -6,21 +6,23 @@ using System.Threading.Tasks;
 
 internal static partial class Program
 {
-	private static void swimmer(int id, CookieContainer cookie, List<urlStruct> willVisit, List<string> visited, int step, int max)
+	private static void swimmer(int id, CookieContainer cookie, List<urlStruct> willVisit, List<string> visited, counter counter, ref exploringSetting setting)
 	{
-		if (max < step) return;
+		if (setting.limit < counter.step) return;
 		List<urlStruct> newComers = new();
 
 		foreach (var visiting in willVisit)
 		{
-			Console.WriteLine($" url => {visiting.url} | step({step}) ");
+			Console.WriteLine($" url => {visiting.url} | step({counter.step}) | count({counter.count}) ");
 			if (visited.Contains(visiting.url)) continue;
 			visited.Add(visiting.url);
-
-			newComers = newComers.Concat(urlExplorer(visiting, id, step, cookie)).ToList();
+			counter.count++;
+			newComers = newComers.Concat(urlExplorer(visiting, id, counter, setting, cookie)).ToList();
 		}
 
-		swimmer(id, cookie, newComers, visited, step + 1, max);
+		counter.step++;
+
+		swimmer(id, cookie, newComers, visited, counter, ref setting);
 	}
 }
 

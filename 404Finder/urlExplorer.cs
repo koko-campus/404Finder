@@ -21,9 +21,11 @@ internal static partial class Program
 {
 	private static List<resultStruct> results = new();
 
-	private static List<urlStruct> urlExplorer(urlStruct url, int id, int step, CookieContainer cookie)
+	private static List<urlStruct> urlExplorer(urlStruct url, int id, counter counter, exploringSetting setting, CookieContainer cookie)
 	{
+		if (setting.limit < counter.count) return new List<urlStruct>();
 		if (!isUrl(url.url)) return new List<urlStruct>();
+
 		(var dom, var responseData) = url2dom(url, cookie);
 		
 		// 探索対象となる(リンクを有する)タグを取得
@@ -51,7 +53,7 @@ internal static partial class Program
 			last_modified = responseData.lastModified,
 			file_size = responseData.fileSize,
 			charset = responseData.charset,
-			step = step,
+			step = counter.step,
 		});
 
 

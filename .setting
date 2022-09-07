@@ -9,7 +9,13 @@
 
 
 # ページ探索の深さ | デフォルト(10)
-PAGE_EXPLORERING_DEPTH=1
+PAGE_EXPLORERING_DEPTH=10
+
+# ページ探索最大回数 | デフォルト(10000)
+PAGE_EXPLORERING_LIMIT=10000
+
+# 探索URLを同一ドメインに限定 | デフォルト(ON)
+TARGET_ON_SAME_DOMAIN=ON
 
 # 各ページごとのリダイレクト追従最大回数 | デフォルト(10)
 REDIRECT_LIMIT=10

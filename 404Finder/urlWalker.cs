@@ -5,6 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 
+
+internal struct exploringSetting
+{
+    internal int depth = 10;
+    internal int limit = 10000;
+    internal bool sameDomain = true;
+}
+
+internal struct counter
+{
+    internal int step = 0;
+    internal int count = 0;
+}
+
 internal static partial class Program
 {
     private static void urlWalker(string fqdn)
@@ -43,10 +57,16 @@ internal static partial class Program
 			}
         };
         List<string> visited = new();
-        var x = obtain("PAGE_EXPLORERING_DEPTH");
-        int max = int.Parse(obtain("PAGE_EXPLORERING_DEPTH"));
+        exploringSetting setting = new()
+        {
+            depth = int.Parse(obtain("PAGE_EXPLORERING_DEPTH")),
+            limit = int.Parse(obtain("PAGE_EXPLORERING_LIMIT")),
+            sameDomain = obtain("TARGET_ON_SAME_DOMAIN") == "ON",
+        };
 
-        swimmer(latestId, cookie, willVisit, visited, 0, max);
+        counter counter = new();
+
+        swimmer(latestId, cookie, willVisit, visited, counter, ref setting);
 
     }
 }
