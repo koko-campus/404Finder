@@ -69,6 +69,8 @@ CREATE TABLE result(
 	file_size int NOT NULL,
 	charset VARCHAR(50) NOT NULL,
 	step INT NOT NULL,
+	come_from VARCHAR(300) NULL,
+	response_time int NOT NULL,
 	rgdt DATETIME DEFAULT CURRENT_TIMESTAMP,
 	updt DATETIME DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY(id, path)

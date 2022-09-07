@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 internal static partial class Program
 {
-	private static Dictionary<string, string> env = new Dictionary<string, string>();
+	private static Dictionary<string, string> env = new();
 
     private static void import()
     {

@@ -52,6 +52,7 @@ internal static partial class Program
             new urlStruct
 			{
                 url = fqdn,
+                comeFrom = null,
                 method = httpMethod.get,
                 kvp = new Dictionary<string, string>(),
 			}

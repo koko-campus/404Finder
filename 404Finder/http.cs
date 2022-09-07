@@ -13,6 +13,7 @@ internal enum httpMethod
 internal struct urlStruct
 {
     internal string url;
+    internal string? comeFrom;
     internal httpMethod method;
     internal Dictionary<string, string> kvp;
 }
