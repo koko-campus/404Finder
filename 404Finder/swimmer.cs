@@ -13,6 +13,7 @@ internal static partial class Program
 
 		foreach (var visiting in willVisit)
 		{
+			// 既に探索済みのURLを判定!!!
 			Console.WriteLine($" url => {visiting.url} | step({counter.step}) | count({counter.count}) ");
 			if (visited.Contains(visiting.url)) continue;
 			visited.Add(visiting.url);
