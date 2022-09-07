@@ -8,8 +8,8 @@
 
 
 
-# ページ最大遷移数 | デフォルト(500)
-PAGE_TRANSITION_LIMIT=500
+# ページ探索の深さ | デフォルト(10)
+PAGE_EXPLORERING_DEPTH=1
 
 # 各ページごとのリダイレクト追従最大回数 | デフォルト(10)
 REDIRECT_LIMIT=10

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using AngleSharp.Html.Dom;
-
+using System.Text.RegularExpressions;
 
 internal struct resultStruct
 {
@@ -23,6 +23,7 @@ internal static partial class Program
 
 	private static List<urlStruct> urlExplorer(urlStruct url, int id, int step, CookieContainer cookie)
 	{
+		if (!isUrl(url.url)) return new List<urlStruct>();
 		(var dom, var responseData) = url2dom(url, cookie);
 		
 		// 探索対象となる(リンクを有する)タグを取得

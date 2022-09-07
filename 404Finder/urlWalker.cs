@@ -43,8 +43,10 @@ internal static partial class Program
 			}
         };
         List<string> visited = new();
+        var x = obtain("PAGE_EXPLORERING_DEPTH");
+        int max = int.Parse(obtain("PAGE_EXPLORERING_DEPTH"));
 
-        swimmer(latestId, cookie, willVisit, visited, 0);
+        swimmer(latestId, cookie, willVisit, visited, 0, max);
 
     }
 }
