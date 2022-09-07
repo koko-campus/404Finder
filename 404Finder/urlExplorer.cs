@@ -85,15 +85,15 @@ internal static partial class Program
 		SQL.SetDataType("@response_time", SqlDbType.Int);
 
 		SQL.AddParam(result.id);
-		SQL.AddParam(result.path.Substring(0, 300));
-		SQL.AddParam(result.ext.Substring(0, 30));
-		SQL.AddParam(result.status_code.Substring(0, 3));
-		SQL.AddParam(result.content_type.Substring(0, 50));
+		SQL.AddParam(result.path[..300]);
+		SQL.AddParam(result.ext[..30]);
+		SQL.AddParam(result.status_code[..3]);
+		SQL.AddParam(result.content_type[..50]);
 		SQL.AddParam(result.last_modified);
 		SQL.AddParam(result.file_size);
-		SQL.AddParam(result.charset.Substring(0, 50));
+		SQL.AddParam(result.charset[..50]);
 		SQL.AddParam(result.step);
-		SQL.AddParam(result.comeFrom.Substring(0, 300));
+		SQL.AddParam(result.comeFrom[..300]);
 		SQL.AddParam((int)result.responseTime.TotalMilliseconds);
 
 		SQL.Execute();
