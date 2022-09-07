@@ -11,14 +11,17 @@ internal struct responseStruct
 	internal long fileSize;
 	internal string charset;
 	internal DateTime lastModified;
+	internal TimeSpan responseTime;
 }
 
 internal static partial class Program
 {
 	private static (IHtmlDocument, responseStruct) url2dom(urlStruct url, CookieContainer cookie)
 	{
+		var stopwatch = new System.Diagnostics.Stopwatch();
 		string param = dict2str(url.kvp);
 		HttpWebRequest? request = null;
+		stopwatch.Start();
 		if (url.method == httpMethod.get)
 		{
 			param = "?" + param;
@@ -28,6 +31,7 @@ internal static partial class Program
 		{
 			request = PostRequest(url.url, cookie, param);
 		}
+		stopwatch.Stop();
 
 		try
 		{
@@ -41,6 +45,7 @@ internal static partial class Program
 				fileSize = response.ContentLength,
 				charset = response.CharacterSet ?? "",
 				lastModified = response.LastModified,
+				responseTime = stopwatch.Elapsed,
 			});
 		}
 		catch
@@ -52,6 +57,7 @@ internal static partial class Program
 				fileSize = -1,
 				charset = "",
 				lastModified = new DateTime(1970, 1, 1),
+				responseTime = new TimeSpan(0, 0, -1),
 			});
 		}
 	}
